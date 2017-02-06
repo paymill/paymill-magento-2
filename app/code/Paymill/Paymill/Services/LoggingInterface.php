@@ -1,0 +1,16 @@
+<?php
+
+namespace Paymill\Paymill\Services;
+
+interface LoggingInterface
+{
+
+    /**
+     * Logging for PaymentProcessor
+     *
+     * @param type $message
+     * @param type $debugInfo
+     */
+    public function log($message, $debugInfo = null, $additionalInformation = null);
+
+}

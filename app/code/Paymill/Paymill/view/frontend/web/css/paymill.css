@@ -1,0 +1,29 @@
+/* -------------------------------------------- *
+ * Validation
+ */
+p.required, .validation-advice {
+	margin: 5px 0 0;
+	color: #df280a;
+	font-size: 13px;
+}
+
+/* For adjacent select inputs. */
+/* Example: credit card expiration month and year. */
+.input-box .v-fix {
+	float: left;
+	margin-right: 5px;
+	max-width: 100%;
+}
+
+/* -------------------------------------------- *
+ * Input Box
+ */
+.input-box {
+	padding-top: 2px;
+}
+
+.input-box:after {
+	content: '';
+	display: table;
+	clear: both;
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+      <add id="Paymill_Paymill::paymill" title="Paymill" module="Paymill_Paymill" sortOrder="60" resource="Paymill_Paymill::paymill"/>
+      <add id="Paymill_Paymill::adminhtml_log" title="paymill_log" translate="title" module="Paymill_Paymill" sortOrder="10" action="paymill/log" parent="Paymill_Paymill::paymill" resource="Paymill_Paymill::adminhtml_log"/>
+      <add id="Paymill_Paymill::adminhmtl_hook" title="Webhooks" translate="title" module="Paymill_Paymill" sortOrder="10" parent="Paymill_Paymill::paymill" action="paymill/hook" resource="Paymill_Paymill::adminhmtl_hook"/>
+    </menu>
+</config>

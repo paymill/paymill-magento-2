@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceContainer name="content">
+      <block class="Paymill\Paymill\Block\Adminhtml\Log" name="paymill.log.grid.container" >
+        <!--<block class="Magento\Backend\Block\Widget\Grid" name="mageplaza_post_grid.grid" as="grid">
+          <arguments>
+            <argument name="id" xsi:type="string">post_id</argument>
+            <argument name="dataSource" xsi:type="object">Paymill\Paymill\Model\ResourceModel\Log\Collection</argument>
+            <argument name="default_sort" xsi:type="string">id</argument>
+            <argument name="default_dir" xsi:type="string">ASC</argument>
+            <argument name="save_parameters_in_session" xsi:type="string">1</argument>
+          </arguments>
+          <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" name="mageplaza_post_grid.grid.columnSet" as="grid.columnSet">
+              <arguments>
+                <argument name="rowUrl" xsi:type="array">
+                  <item name="path" xsi:type="string">*/*/edit</item>
+                </argument>
+              </arguments>
+              <block class="Magento\Backend\Block\Widget\Grid\Column" as="id">
+                <arguments>
+                  <argument name="header" xsi:type="string" translate="true">ID</argument>
+                  <argument name="index" xsi:type="string">post_id</argument>
+                  <argument name="type" xsi:type="string">text</argument>
+                  <argument name="column_css_class" xsi:type="string">col-id</argument>
+                  <argument name="header_css_class" xsi:type="string">col-id</argument>
+                </arguments>
+              </block>
+              <block class="Magento\Backend\Block\Widget\Grid\Column" as="title">
+                <arguments>
+                  <argument name="header" xsi:type="string" translate="true">Title</argument>
+                  <argument name="index" xsi:type="string">title</argument>
+                  <argument name="type" xsi:type="string">text</argument>
+                  <argument name="column_css_class" xsi:type="string">col-id</argument>
+                  <argument name="header_css_class" xsi:type="string">col-id</argument>
+                </arguments>
+              </block>
+              <block class="Magento\Backend\Block\Widget\Grid\Column" as="creation_time">
+                <arguments>
+                  <argument name="header" xsi:type="string" translate="true">Created Time</argument>
+                  <argument name="index" xsi:type="string">creation_time</argument>
+                  <argument name="type" xsi:type="string">date</argument>
+                  <argument name="column_css_class" xsi:type="string">col-id</argument>
+                  <argument name="header_css_class" xsi:type="string">col-id</argument>
+                </arguments>
+              </block>
+          </block>
+        </block>-->
+      </block>
+    </referenceContainer>
+</page>

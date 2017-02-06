@@ -1,0 +1,144 @@
+<div class="payment-method"
+	data-bind="css: {'_active': (getCode() == isChecked())}">
+	<div class="payment-method-title field choice">
+		<input type="radio" name="payment[method]" class="radio"
+			data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()" />
+		<label data-bind="attr: {'for': getCode()}" class="label"><span
+			data-bind="text: getTitle()"></span></label>
+	</div>
+	<div class="payment-method-content">
+
+		<form id="credit_card_form">
+			<fieldset
+				data-bind="attr: {id: 'payment_form_' + getCode() ,class: 'fieldset payment items ccard ' + getCode()}">
+
+				<div class="field type">
+					<div class="control">
+						<div data-bind="html: getSpecificCreditcard()"></div>
+					</div>
+				</div>
+
+
+				<!-- ko if: isFastCheckout() === 'true' -->
+				<div id="paymillFastCheckoutDiv">
+					<!-- ko if: getPaymentEntry('card_holder') != '' -->
+					<div>
+						<label>
+							<!-- ko i18n: 'paymill_Holder'-->
+							<!-- /ko -->
+						</label>
+						<div class="input-box">
+							<!-- ko : getPaymentEntry('card_holder') -->
+							<!-- /ko -->
+						</div>
+					</div>
+					<!-- /ko -->
+
+
+					<div>
+						<label>
+							<!-- ko i18n: 'paymill_Number'-->
+							<!-- /ko -->
+						</label>
+						<div class="input-box">
+							<!-- ko : getPaymentEntry('cc_number') -->
+							<!-- /ko -->
+						</div>
+					</div>
+
+					<div>
+						<label>
+							<!-- ko i18n: 'paymill_Date' -->
+							<!-- /ko -->
+						</label>
+						<div class="input-box">
+							<!-- ko : getPaymentEntry('expire_month') -->
+							<!-- /ko -->
+							/
+							<!-- ko : getPaymentEntry('expire_year') -->
+							<!-- /ko -->
+						</div>
+					</div>
+
+					<div>
+						<label>
+							<!-- ko i18n: 'Card Verification Number'-->
+							<!-- /ko -->
+						</label>
+						<div class="input-box">
+							<!-- ko : getPaymentEntry('cvc') -->
+							<!-- /ko -->
+						</div>
+					</div>
+
+					<div>
+						<label></label>
+						<div class="input-box">
+							<button type="button"
+								data-bind="
+                    click: paymillFrame(),
+                    attr: {title: $t('paymill_change')}">
+								<span data-bind="i18n: 'paymill_change'"></span>
+							</button>
+						</div>
+					</div>
+				</div>
+				<!-- /ko -->
+
+
+				<div id='paymillContainer'></div>
+				<div style="display: none;">
+					<input class="paymill-payment-token-cc paymill-validate-cc-token"
+						name="payment[paymill-payment-token-cc]"
+						id="payment[paymill-payment-token-cc]" type="hidden" /> <input
+						class="paymill-payment-token-url-cc" type="hidden"
+						data-bind="value: getTokenUrl()" /> <input
+						class="paymill-payment-token-log-cc" type="hidden"
+						data-bind="value: getTokenLog()" /> <input
+						class="paymill-info-public_key-cc" type="hidden"
+						data-bind="value: getPublicKey()" /> <input
+						class="paymill-option-debug-cc" type="hidden"
+						data-bind="value: isInDebugMode()" /> <input
+						class="paymill-info-pci-cc" type="hidden"
+						data-bind="value: getPci()" /> <input
+						class="paymill-info-fastCheckout-cc" type="hidden"
+						data-bind="value: isFastCheckout()" /> <input
+						class="paymill-payment-currency-cc" type="hidden"
+						data-bind="value: getCurrency()" /> <input
+						class="paymill-payment-customer-email-cc" type="hidden"
+						data-bind="value: getCustomerEmail()" /> <span>
+						<!-- ko i18n: 'paymill_lang'-->
+						<!-- /ko -->
+					</span>
+				</div>
+
+				<div>
+					<!--ko if:  getCheckoutDesc() -->
+					<div>
+						<label data-bind="value: getCheckoutDesc()"></label>
+					</div>
+					<!--/ko-->
+
+				</div>
+
+			</fieldset>
+		</form>
+
+
+
+		<div class="actions-toolbar">
+			<div class="primary">
+				<button class="action primary checkout" type="submit"
+					data-bind="
+    click: submitOrder,
+    attr: {title: $t('Place Order')},
+    css: {disabled: !isPlaceOrderActionAllowed()},
+    enable: (getCode() == isChecked())
+    "
+					disabled>
+					<span data-bind="i18n: 'Place Order'"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
