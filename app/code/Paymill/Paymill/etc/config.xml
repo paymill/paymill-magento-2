@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <!-- 'payment' configuration section (tab) -->
+        <payment>
+            <paymill_creditcard>
+                <active>0</active>
+                <currency>EUR,USD</currency>
+                <model>Paymill\Paymill\Model\Method\MethodModelCreditcard</model>
+                <order_status>processing</order_status>
+                <title>paymill_credit_card</title>
+                <payment_action>authorize</payment_action>
+                <pci>SAQ A</pci>
+            </paymill_creditcard>
+            <paymill_directdebit>
+                <active>0</active>
+                <prenotification>7</prenotification>
+                <currency>EUR,USD</currency>
+                <model>Paymill\Paymill\Model\Method\MethodModelDirectdebit</model>
+                <order_status>pending</order_status>
+                <title>paymill_direct_debit</title>
+                <payment_action>authorize</payment_action>
+            </paymill_directdebit>
+        </payment>
+    </default>
+</config>

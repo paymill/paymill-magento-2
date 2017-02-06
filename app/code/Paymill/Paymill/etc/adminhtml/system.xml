@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+  <system>
+    <section id="payment">
+        <group id="paymill" type="" sortOrder="700" showInDefault="1" showInWebsite="1" showInStore="1" translate="label">
+            <label>paymill_Basic_Setting</label>
+            <field id="version" translate="label" type="text" sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>v4.0.3</label>
+                <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+            </field>
+            <field id="private_key" translate="label, tooltip, comment" type="text" sortOrder="701"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_Private_Key</label>
+                <tooltip>paymill_private_key_tooltip</tooltip>
+                <comment>paymill_private_key_comment</comment>
+            </field>
+            <field id="public_key" translate="label, tooltip, comment" type="text" sortOrder="702"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_Public_Key</label>
+                <tooltip>paymill_public_key_tooltip</tooltip>
+                <comment>paymill_public_key_comment</comment>
+            </field>
+            <field id="debugging_active" translate="label" type="select" sortOrder="703"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_Activate_Debugging</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="fc_active" translate="label" type="select" sortOrder="704"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_fc_active</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="logging_active" translate="label" type="select" sortOrder="705"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_Activate_Logging</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="expert_settings" translate="label" type="text" sortOrder="706"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_expert_settings</label>
+                <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+            </field>
+            <field id="base_currency" translate="label, tooltip" type="select" sortOrder="707"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_base_or_order_currency</label>
+                <tooltip>paymill_paymill_base_or_order_currency_tooltip</tooltip>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="token_creation_identifier_id" translate="label, tooltip" type="text" sortOrder="708"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_token_creation_identifier_id</label>
+                <tooltip>paymill_token_creation_identifier_id_tooltip</tooltip>
+            </field>
+        </group>
+        <group id="paymill_creditcard" type="" sortOrder="800" showInDefault="1" showInWebsite="1" showInStore="1" translate="label">
+            <label>paymill_credit_card_label</label>
+            <field id="version" type="text" sortOrder="801"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>v4.0.3</label>
+                <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+            </field>
+            <field id="pci" translate="label" type="select" sortOrder="802"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_payment_form</label>
+                <source_model>Paymill\Paymill\Model\Source\Creditcard\Pci</source_model>
+            </field>
+            <field id="active" translate="label" type="select" sortOrder="803"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_opt_Enabled</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="showspecificcreditcard" translate="label" type="select" sortOrder="804"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_show_creditcards</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="specificcreditcard" translate="label" type="multiselect" sortOrder="805"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_select_creditcards</label>
+                <source_model>Paymill\Paymill\Model\Source\Creditcard\Creditcards</source_model>
+                <depends>
+                  <field id="showspecificcreditcard">1</field>
+                </depends>
+            </field>
+            <field id="allowspecific" translate="label" type="select" sortOrder="806"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Payment from Applicable Countries</label>
+                <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+            </field>
+            <field id="specificcountry" translate="label" type="multiselect" sortOrder="807"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Payment from Specific Countries</label>
+                <source_model>Magento\Config\Model\Config\Source\Locale\Country</source_model>
+                <can_be_empty>1</can_be_empty>
+            </field>
+            <field id="currency" translate="label" type="multiselect" sortOrder="808"  showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>paymill_accepted_currency</label>
+                <source_model>Magento\Config\Model\Config\Source\Locale\Currency</source_model>
+            </field>
+            <field id="order_status" translate="label" type="select" sortOrder="809"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>New order status</label>
+                <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+            </field>
+            <field id="preAuth_active" translate="label" type="select" sortOrder="810"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_preAuth_active</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="send_invoice_mail" translate="label" type="select" sortOrder="811"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_send_invoice_mail</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <depends>
+                  <field id="preAuth_active">0</field>
+                </depends>
+            </field>
+            <field id="checkout_desc" translate="label" type="textarea" sortOrder="812"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_checkout_desc</label>
+            </field>
+            <field id="hook_settings" translate="label" type="text" sortOrder="813"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_hook_settings</label>
+                <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+            </field>
+            <field id="hook_create_invoice_active" translate="label" type="select" sortOrder="814"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_hook_create_invoice_active</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="send_hook_invoice_mail" translate="label" type="select" sortOrder="815"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>paymill_hook_send_invoice_mail</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <depends>
+                  <field id="hook_create_invoice_active">1</field>
+                </depends>
+            </field>
+        </group>
+        <group id="paymill_directdebit" type="" sortOrder="900" showInDefault="1" showInWebsite="1" showInStore="1" translate="label">
+          <label>paymill_direct_debit_label</label>
+          <field id="version" type="text" sortOrder="901"  showInDefault="1" showInWebsite="1" showInStore="1">
+              <label>v4.0.3</label>
+              <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+          </field>
+          <field id="active" translate="label" type="select" sortOrder="902"  showInDefault="1" showInWebsite="1" showInStore="1">
+              <label>paymill_opt_Enabled</label>
+              <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+          </field>
+          <field id="prenotification" translate="label" type="text" sortOrder="903"  showInDefault="1" showInWebsite="1" showInStore="1">
+              <label>paymill_prenotification</label>
+              <validate>validate-digits validate-not-negative-number</validate>
+          </field>
+          <field id="allowspecific" translate="label" type="select" sortOrder="904"  showInDefault="1" showInWebsite="1" showInStore="1">
+              <label>Payment from Applicable Countries</label>
+              <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+          </field>
+          <field id="specificcountry" translate="label" type="multiselect" sortOrder="905"  showInDefault="1" showInWebsite="1" showInStore="1">
+              <label>Payment from Specific Countries</label>
+              <source_model>Magento\Config\Model\Config\Source\Locale\Country</source_model>
+              <can_be_empty>1</can_be_empty>
+          </field>
+          <field id="currency" translate="label" type="multiselect" sortOrder="906"  showInDefault="1" showInWebsite="1" showInStore="0">
+              <label>paymill_accepted_currency</label>
+              <source_model>Magento\Config\Model\Config\Source\Locale\Currency</source_model>
+          </field>
+          <field id="order_status" translate="label" type="select" sortOrder="907"  showInDefault="1" showInWebsite="1" showInStore="1">
+              <label>New order status</label>
+              <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+          </field>
+          <field id="checkout_desc" translate="label" type="textarea" sortOrder="908"  showInDefault="1" showInWebsite="1" showInStore="1">
+              <label>paymill_checkout_desc</label>
+          </field>
+          <field id="hook_settings" translate="label" type="text" sortOrder="909"  showInDefault="1" showInWebsite="1" showInStore="1">
+              <label>paymill_hook_settings</label>
+              <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+          </field>
+          <field id="hook_create_invoice_active" translate="label" type="select" sortOrder="910"  showInDefault="1" showInWebsite="1" showInStore="1">
+              <label>paymill_hook_create_invoice_active</label>
+              <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+          </field>
+          <field id="send_hook_invoice_mail" translate="label" type="select" sortOrder="911"  showInDefault="1" showInWebsite="1" showInStore="1">
+              <label>paymill_hook_send_invoice_mail</label>
+              <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+              <depends>
+                <field id="hook_create_invoice_active">1</field>
+              </depends>
+          </field>
+        </group>
+    </section>
+  </system>
+</config>

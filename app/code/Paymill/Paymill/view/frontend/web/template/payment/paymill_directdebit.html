@@ -1,0 +1,243 @@
+<div class="payment-method"
+	data-bind="css: {'_active': (getCode() == isChecked())}">
+	<div class="payment-method-title field choice">
+		<input type="radio" name="payment[method]" class="radio"
+			data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()" />
+		<label data-bind="attr: {'for': getCode()}" class="label"><span
+			data-bind="text: getTitle()"></span></label>
+	</div>
+	<div class="payment-method-content">
+
+		<form id="direct_debit_form">
+
+			<fieldset
+				data-bind="attr: {id: 'payment_form_' + getCode() ,class: 'fieldset payment items ccard ' + getCode()}">
+
+				<div class="field number required">
+					<label class="label required"
+						data-bind="attr: {for: getCode() + '_holdername'}"> <!-- ko i18n: 'paymill_Holder'-->
+						<!-- /ko -->
+					</label>
+					<div class="control">
+						<input type="text"
+							class="input-text paymill-validate-dd-holdername required-entry"
+							data-bind=" attr: {id: getCode() + '_holdername'}, value: getPaymentEntry()" />
+					</div>
+				</div>
+
+
+
+				<div class="field number required">
+					<label class="label required"
+						data-bind="attr: {for: getCode() + '_account_iban'}">
+						<!-- ko i18n: 'paymill_iban'-->
+						<!-- /ko --> / <!-- ko i18n: 'paymill_account'-->
+						<!-- /ko -->
+					</label>
+					<div class="input-box">
+						<input type="text"
+							class="input-text paymill-validate-dd-account-iban required-entry"
+							data-bind="attr: {id: getCode() + '_account_iban'}, value: getPaymentEntryElv()[0]" />
+					</div>
+				</div>
+
+
+				<div class="field number required">
+					<label class="label required"
+						data-bind="attr: {for: getCode() + '_bankcode_bic'}">
+						<!-- ko i18n: 'paymill_bic'-->
+						<!-- /ko --> / <!-- ko i18n: 'paymill_bankcode'-->
+						<!-- /ko -->
+					</label>
+					<div class="input-box">
+						<input type="text"
+							class="input-text paymill-validate-dd-bankcode-bic required-entry"
+							data-bind="attr: {id: getCode() + '_bankcode_bic'}, value: getPaymentEntryElv()[1]" />
+					</div>
+
+				</div>
+
+				<div style="display: none;">
+					<input class="paymill-payment-token-elv paymill-validate-elv-token"
+						name="payment[paymill-payment-token-elv]"
+						id="payment[paymill-payment-token-elv]" type="hidden" /> <input
+						class="paymill-option-debug-elv" type="hidden"
+						data-bind="value: isInDebugMode()" /> <input
+						class="paymill-payment-error-number-elv" type="hidden"
+						data-bind="value: getTranslatedText('paymill_error_text_invalid_number_elv')" />
+					<span>
+						<!-- ko i18n: 'paymill_error_text_invalid_number_elv'-->
+						<!-- /ko -->
+					</span> <input class="paymill-payment-error-holder-elv" type="hidden"
+						data-bind="value: getTranslatedText('paymill_error_text_invalid_holder_elv')" />
+					<span>
+						<!-- ko i18n: 'paymill_error_text_invalid_holder_elv'-->
+						<!-- /ko -->
+					</span> <input class="paymill-payment-error-number-iban-elv" type="hidden"
+						data-bind="value: getTranslatedText('paymill_feedback_error_directdebit_number_iban')" />
+					<span>
+						<!-- ko i18n: 'paymill_feedback_error_directdebit_number_iban'-->
+						<!-- /ko -->
+					</span> <input class="paymill-payment-error-bankcode" type="hidden"
+						data-bind="value: getTranslatedText('paymill_error_text_invalid_bankcode')" />
+					<span>
+						<!-- ko i18n: 'paymill_error_text_invalid_bankcode'-->
+						<!-- /ko -->
+					</span> <input class="paymill-payment-error-bankcode-bic-elv"
+						type="hidden"
+						data-bind="value: getTranslatedText('paymill_feedback_error_directdebit_bankcode_bic')" />
+					<span>
+						<!-- ko i18n: 'paymill_feedback_error_directdebit_bankcode_bic'-->
+						<!-- /ko -->
+					</span> <input class="paymill-payment-error-elv-token" type="hidden"
+						data-bind="value: getTranslatedText('paymill_error_text_invalid_token')" />
+					<span>
+						<!-- ko i18n: 'paymill_error_text_invalid_token'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_internal_server_error-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_internal_server_error')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_internal_server_error'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_invalid_public_key-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_invalid_public_key')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_invalid_public_key'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_invalid_payment_data-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_invalid_payment_data')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_invalid_payment_data'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_unknown_error-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_unknown_error')" /> <span>
+						<!-- ko i18n: 'PAYMILL_unknown_error'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_3ds_cancelled-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_3ds_cancelled')" /> <span>
+						<!-- ko i18n: 'PAYMILL_3ds_cancelled'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_card_number-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_card_number')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_card_number'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_card_exp_year-ekv"
+						type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_card_exp_year')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_card_exp_year'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_card_exp_month-elv"
+						type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_card_exp_month')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_card_exp_month'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_card_exp-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_card_exp')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_card_exp'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_card_cvc-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_card_cvc')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_card_cvc'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_card_holder-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_card_holder')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_card_holder'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_amount_int-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_amount_int')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_amount_int'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_field_invalid_amount-elv"
+						type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_field_invalid_amount')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_field_invalid_amount'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_currency-elv"
+						type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_currency')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_currency'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_account_number-elv"
+						type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_account_number')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_account_number'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_account_holder-elv"
+						type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_account_holder')" />
+					<span>
+						<!-- ko i18n: 'paymill_bic'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_bank_code-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_bank_code')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_bank_code'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_iban-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_iban')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_iban'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_bic-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_bic')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_bic'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_country-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_country')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_country'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_bank_data-elv" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_bank_data')" />
+					<span>
+						<!-- ko i18n: 'PAYMILL_field_invalid_bank_data'-->
+						<!-- /ko -->
+					</span> <input class="paymill-info-public_key-elv" type="hidden"
+						data-bind="value: getPublicKey()" /> <input
+						class="paymill-info-fastCheckout-elv" type="hidden"
+						data-bind="value: isFastCheckout()" /> <input
+						class="paymill-payment-token-log-elv" type="hidden"
+						data-bind="value: getTokenLog()" />
+				</div>
+			</fieldset>
+
+		</form>
+
+		<div>
+			<!--ko if:  getCheckoutDesc() -->
+			<div>
+				<label data-bind="value: getCheckoutDesc()"></label>
+			</div>
+			<!--/ko-->
+
+		</div>
+
+
+		<div class="actions-toolbar">
+			<div class="primary">
+				<!--initializeHandler(getCode()) -->
+				<button class="action primary checkout" type="submit"
+					data-bind="
+        click: submitOrder,
+        attr: {title: $t('Place Order')},
+        css: {disabled: !isPlaceOrderActionAllowed()},
+        enable: (getCode() == isChecked())
+        "
+					disabled>
+					<span data-bind="i18n: 'Place Order'"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

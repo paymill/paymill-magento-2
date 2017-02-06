@@ -1,0 +1,273 @@
+<div class="payment-method"
+	data-bind="css: {'_active': (getCode() == isChecked())}">
+	<div class="payment-method-title field choice">
+		<input type="radio" name="payment[method]" class="radio"
+			data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()" />
+		<label data-bind="attr: {'for': getCode()}" class="label"><span
+			data-bind="text: getTitle()"></span></label>
+	</div>
+	<div class="payment-method-content">
+
+		<form id="credit_card_form">
+			<fieldset
+				data-bind="attr: {id: 'payment_form_' + getCode() ,class: 'fieldset payment items ccard ' + getCode()}">
+
+				<div class="field type">
+					<div class="control">
+						<div data-bind="html: getSpecificCreditcard()"></div>
+					</div>
+				</div>
+
+
+				<div class="field number required">
+					<label class="label required"
+						data-bind="attr: {for: getCode() + '_holdername'}"> <!-- ko i18n: 'paymill_Holder'-->
+						<!-- /ko -->
+					</label>
+					<div class="control">
+						<input type="text"
+							class="input-text paymill-validate-cc-holder required-entry"
+							data-bind=" attr: {id: getCode() + '_holdername'}, value: getPaymentEntry('card_holder')" />
+					</div>
+				</div>
+
+
+				<div class="field number required">
+					<label class="label required"
+						data-bind="attr: {for: getCode() + '_number'}"> <!-- ko i18n: 'paymill_Number'-->
+						<!-- /ko -->
+					</label>
+					<div class="input-box">
+						<input type="text"
+							class="input-text paymill-validate-cc-number required-entry"
+							data-bind="attr: {id: getCode() + '_number'}, value: getPaymentEntry('cc_number')" />
+					</div>
+				</div>
+
+				<div class="field date required"
+					data-bind="attr: {id: getCode() + '_cc_type_exp_div'}">
+					<label class="label required"
+						data-bind="attr: {for: getCode() + '_expiry_month'}"> <!-- ko i18n: 'paymill_Date' -->
+						<!-- /ko -->
+					</label>
+					<div class="control">
+						<div class="fields group group-2">
+							<div class="field no-label month">
+								<div class="control">
+									<select
+										class="month paymill-validate-cc-expdate-month required-entry"
+										data-bind="attr: {id: getCode() + '_expiry_month'},
+                  enable: true,
+                  options: getCcMonthsValues(),
+                  optionsValue: 'value',
+                  optionsText: 'month',
+                  optionsCaption: $t('Month')
+                  value: getPaymentEntry('expire_month')">
+									</select>
+								</div>
+							</div>
+							<div class="field no-label year">
+								<div class="control">
+									<select
+										class="year paymill-validate-cc-expdate-year required-entry"
+										data-bind="attr: {id: getCode() + '_expiry_year'},
+                enable: true,
+                options: getCcYearsValues(),
+                optionsValue: 'value',
+                optionsText: 'year',
+                optionsCaption: $t('Year')
+                value: getPaymentEntry('expire_year')">
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="field cvv required"
+					data-bind="attr: {id: getCode() + '_cc_type_cvv_div'}">
+					<label data-bind="attr: {for: getCode() + '_cvc'}" class="label">
+						<span> <!-- ko i18n: 'Card Verification Number'--> <!-- /ko -->
+					</span>
+					</label>
+					<div class="control _with-tooltip">
+						<input type="number" autocomplete="off"
+							class="input-text cvv paymill-validate-cc-cvc"
+							data-bind="attr: {id: getCode() + '_cvc'},
+          title: $t('Card Verification Number'),
+          value: getPaymentEntry('cvc')" />
+
+
+						<div class="field-tooltip toggle">
+							<span class="field-tooltip-action action-cvv" tabindex="0"
+								data-toggle="dropdown"
+								data-bind="attr: {title: $t('What is this?')}, mageInit: {'dropdown':{'activeClass': '_active'}}">
+								<span> <!-- ko i18n: 'What is this?'--> <!-- /ko -->
+							</span>
+							</span>
+							<div class="field-tooltip-content" data-target="dropdown"
+								data-bind="html: getCvvImageHtml()"></div>
+						</div>
+					</div>
+				</div>
+
+				<div style="display: none;">
+					<input class="paymill-payment-token-cc paymill-validate-cc-token"
+						name="payment[paymill-payment-token-cc]"
+						id="payment[paymill-payment-token-cc]" type="hidden" /> <input
+						class="paymill_3ds_cancel" type="hidden"
+						data-bind="value: getTranslatedText('paymill_3ds_cancel')" /> <span>
+						<!-- ko i18n: 'paymill_3ds_cancel'--> <!-- /ko -->
+					</span> <input class="paymill-payment-error-number" type="hidden"
+						data-bind="value: getTranslatedText('paymill_error_text_invalid_number_cc')" />
+					<span> <!-- ko i18n: 'paymill_error_text_invalid_number_cc'-->
+						<!-- /ko -->
+					</span> <input class="paymill-payment-error-holder" type="hidden"
+						data-bind="value: getTranslatedText('paymill_error_text_invalid_holder_cc')" />
+					<span> <!-- ko i18n: 'paymill_error_text_invalid_holder_cc'-->
+						<!-- /ko -->
+					</span> <input class="paymill-payment-error-expdate" type="hidden"
+						data-bind="value: getTranslatedText('paymill_error_text_invalid_expdate')" />
+					<span> <!-- ko i18n: 'paymill_error_text_invalid_expdate'-->
+						<!-- /ko -->
+					</span> <input class="paymill-payment-error-cvc" type="hidden"
+						data-bind="value: getTranslatedText('paymill_error_text_invalid_cvc')" />
+					<span> <!-- ko i18n: 'paymill_error_text_invalid_cvc'--> <!-- /ko -->
+					</span> <input class="paymill-payment-error-cc-token" type="hidden"
+						data-bind="value: getTranslatedText('paymill_error_text_invalid_token')" />
+					<span> <!-- ko i18n: 'paymill_error_text_invalid_token'--> <!-- /ko -->
+					</span> <input class="PAYMILL_internal_server_error-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_internal_server_error')" />
+					<span> <!-- ko i18n: 'PAYMILL_internal_server_error'--> <!-- /ko -->
+					</span> <input class="PAYMILL_invalid_public_key-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_invalid_public_key')" />
+					<span> <!-- ko i18n: 'PAYMILL_invalid_public_key'--> <!-- /ko -->
+					</span> <input class="PAYMILL_invalid_payment_data-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_invalid_payment_data')" />
+					<span> <!-- ko i18n: 'PAYMILL_invalid_payment_data'--> <!-- /ko -->
+					</span> <input class="PAYMILL_unknown_error-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_unknown_error')" />
+					<span> <!-- ko i18n: 'PAYMILL_unknown_error'--> <!-- /ko -->
+					</span> <input class="PAYMILL_3ds_cancelled-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_3ds_cancelled')" />
+					<span> <!-- ko i18n: 'PAYMILL_3ds_cancelled'--> <!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_card_number-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_card_number')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_card_number'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_card_exp_year-cc"
+						type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_card_exp_year')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_card_exp_year'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_card_exp_month-cc"
+						type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_card_exp_month')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_card_exp_month'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_card_exp-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_card_exp')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_card_exp'--> <!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_card_cvc-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_card_cvc')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_card_cvc'--> <!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_card_holder-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_card_holder')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_card_holder'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_amount_int-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_amount_int')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_amount_int'--> <!-- /ko -->
+					</span> <input class="PAYMILL_field_field_invalid_amount-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_field_invalid_amount')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_field_invalid_amount'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_currency-cc"
+						type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_currency')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_currency'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_email-cc"
+						type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_email')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_email'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_account_number-cc"
+						type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_account_number')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_account_number'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_account_holder-cc"
+						type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_account_holder')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_account_holder'-->
+						<!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_bank_code-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_bank_code')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_bank_code'--> <!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_iban-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_iban')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_iban'--> <!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_bic-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_bic')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_bic'--> <!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_country-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_country')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_country'--> <!-- /ko -->
+					</span> <input class="PAYMILL_field_invalid_bank_data-cc" type="hidden"
+						data-bind="value: getTranslatedText('PAYMILL_field_invalid_bank_data')" />
+					<span> <!-- ko i18n: 'PAYMILL_field_invalid_bank_data'--> <!-- /ko -->
+					</span> <input class="paymill-info-public_key-cc" type="hidden"
+						data-bind="value: getPublicKey()" /> <input
+						class="paymill-payment-token-url-cc" type="hidden"
+						data-bind="value: getTokenUrl()" /> <input
+						class="paymill-payment-token-log-cc" type="hidden"
+						data-bind="value: getTokenLog()" /> <input
+						class="paymill-payment-currency-cc" type="hidden"
+						data-bind="value: getCurrency()" /> <input
+						class="paymill-payment-customer-email-cc" type="hidden"
+						data-bind="value: getCustomerEmail()" /> <input
+						class="paymill-option-debug-cc" type="hidden"
+						data-bind="value: isInDebugMode()" /> <input
+						class="paymill-info-fastCheckout-cc" type="hidden"
+						data-bind="value: isFastCheckout()" /> <input
+						class="paymill-info-pci-cc" type="hidden"
+						data-bind="value: getPci()" />
+				</div>
+
+
+				<div>
+					<!--ko if:  getCheckoutDesc() -->
+					<div>
+						<label data-bind="value: getCheckoutDesc()"></label>
+					</div>
+					<!--/ko-->
+
+				</div>
+
+
+
+			</fieldset>
+
+		</form>
+
+
+
+		<div class="actions-toolbar">
+			<div class="primary">
+				<button class="action primary checkout" type="submit"
+					data-bind="
+    click: submitOrder,
+    attr: {title: $t('Place Order')},
+    css: {disabled: !isPlaceOrderActionAllowed()},
+    enable: (getCode() == isChecked())
+    "
+					disabled>
+					<span data-bind="i18n: 'Place Order'"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
