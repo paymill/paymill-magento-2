@@ -200,9 +200,8 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
-     * Returns the value of the "specificcreditcard" config from the Backend as
-     * a
-     * string
+     * Returns the value of the "getSpecificCreditCard" config from the Backend as
+     * a string
      *
      * @return boolean
      */
@@ -213,13 +212,12 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
-     * Returns the value of the "showspecificcreditcard" config from the Backend
-     * as a
-     * string
+     * Returns the value of the "showSpecificcreditcard" config from the Backend
+     * as a string
      *
      * @return boolean
      */
-    public function showspecificcreditcard ()
+    public function showSpecificCreditCard ()
     {
         return $this->_getBackendOption("paymill_creditcard", 
                 "showspecificcreditcard");
