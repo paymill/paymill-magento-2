@@ -281,7 +281,7 @@ class PaymillConfigProvider implements ConfigProviderInterface
         $this->creditCardLogosDisplay = '';
         $this->creditCardLogosBrand = array();
         $temp = array();
-        if ($this->paymillOptionHelperHelper->showspecificcreditcard()) {
+        if ($this->paymillOptionHelperHelper->showSpecificCreditCard()) {
             foreach ($cards as $card) {
                 $asset = $this->createAsset(
                         'Paymill_Paymill::images/icon_32x20_' . $card . '.png');
