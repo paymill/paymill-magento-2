@@ -42,7 +42,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Returns the Public Key from the Backend as a string
-     * 
+     *
      * @return String
      */
     public function getPublicKey ()
@@ -52,7 +52,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Returns the Private Key from the Backend as a string
-     * 
+     *
      * @return String
      */
     public function getPrivateKey ()
@@ -62,7 +62,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Returns the state of the "Logging" Switch from the Backend as a Boolean
-     * 
+     *
      * @return Boolean
      */
     public function isLogging ()
@@ -73,7 +73,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Returns the state of the "FastCheckout" Switch from the Backend as a
      * Boolean
-     * 
+     *
      * @return Boolean
      */
     public function isFastCheckoutEnabled ()
@@ -83,7 +83,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Returns the state of the "Debug" Switch from the Backend as a Boolean
-     * 
+     *
      * @return Boolean
      */
     public function isInDebugMode ()
@@ -94,7 +94,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Returns the state of the "Show Labels" Switch from the Backend as a
      * Boolean
-     * 
+     *
      * @return Boolean
      */
     public function isShowingLabels ()
@@ -104,7 +104,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Is base currency in use
-     * 
+     *
      * @return boolean
      */
     public function isBaseCurrency ()
@@ -114,7 +114,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Is base currency in use
-     * 
+     *
      * @return boolean
      */
     public function getCheckoutDesc ($choice)
@@ -124,7 +124,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Return token selector
-     * 
+     *
      * @return string
      */
     public function getTokenSelector ()
@@ -135,7 +135,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Returns the value of the given backend option.
      * <p align = "center">Needs the $_storeId to be set to work properly</p>
-     * 
+     *
      * @param String $choice
      *            Name of the desired category as a string
      * @param String $optionName
@@ -157,7 +157,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Returns the Value of the general Option with the given name.
      * <p align = "center">Needs the $_storeId to be set to work properly</p>
-     * 
+     *
      * @param String $optionName            
      * @return mixed Value
      */
@@ -168,7 +168,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Returns the state of the "preAuth" Switch from the Backend as a Boolean
-     * 
+     *
      * @return boolean
      */
     public function isPreAuthorizing ()
@@ -179,7 +179,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Returns the value of the "prenotification" config from the Backend as a
      * string
-     * 
+     *
      * @return string
      */
     public function getPrenotificationDays ()
@@ -191,7 +191,7 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Returns the value of the "Payment Form" config from the Backend as a
      * string
-     * 
+     *
      * @return string
      */
     public function getPci ()
@@ -199,10 +199,29 @@ class OptionHelper extends \Magento\Framework\App\Helper\AbstractHelper
         return $this->_getBackendOption("paymill_creditcard", "pci");
     }
 
+    /**
+     * Returns the value of the "specificcreditcard" config from the Backend as
+     * a
+     * string
+     *
+     * @return boolean
+     */
     public function getSpecificCreditcard ()
     {
         return $this->_getBackendOption("paymill_creditcard", 
                 "specificcreditcard");
     }
-    
+
+    /**
+     * Returns the value of the "showspecificcreditcard" config from the Backend
+     * as a
+     * string
+     *
+     * @return boolean
+     */
+    public function showspecificcreditcard ()
+    {
+        return $this->_getBackendOption("paymill_creditcard", 
+                "showspecificcreditcard");
+    }
 }

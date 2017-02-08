@@ -97,6 +97,11 @@ define(
             {
                 this.methodInstance.setValidationRules();
             },
+            
+            openFrame: function (lang)
+            {
+                this.methodInstance.openPaymillFrame(lang);
+            },
 
             setEventListener: function (selector)
             {
@@ -159,9 +164,10 @@ define(
                             return
                         }
                     }
-
+                    callbackTokenRes(false);
+                    return;
                 } 
-                callbackTokenRes(false);
+                callbackTokenRes(true);
             },
 
             validate: function ()

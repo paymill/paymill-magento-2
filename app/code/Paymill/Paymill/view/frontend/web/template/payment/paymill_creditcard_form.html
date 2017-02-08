@@ -23,51 +23,37 @@
 				<div id="paymillFastCheckoutDiv">
 					<!-- ko if: getPaymentEntry('card_holder') != '' -->
 					<div>
-						<label>
-							<!-- ko i18n: 'paymill_Holder'-->
-							<!-- /ko -->
+						<label> <!-- ko i18n: 'paymill_Holder'--> <!-- /ko -->
 						</label>
 						<div class="input-box">
-							<!-- ko : getPaymentEntry('card_holder') -->
-							<!-- /ko -->
+							<span data-bind="text: getPaymentEntry('card_holder')"></span>
 						</div>
 					</div>
 					<!-- /ko -->
 
 
 					<div>
-						<label>
-							<!-- ko i18n: 'paymill_Number'-->
-							<!-- /ko -->
+						<label> <!-- ko i18n: 'paymill_Number'--> <!-- /ko -->
 						</label>
 						<div class="input-box">
-							<!-- ko : getPaymentEntry('cc_number') -->
-							<!-- /ko -->
+							<span data-bind="text: getPaymentEntry('cc_number')"></span>
 						</div>
 					</div>
 
 					<div>
-						<label>
-							<!-- ko i18n: 'paymill_Date' -->
-							<!-- /ko -->
+						<label> <!-- ko i18n: 'paymill_Date' --> <!-- /ko -->
 						</label>
 						<div class="input-box">
-							<!-- ko : getPaymentEntry('expire_month') -->
-							<!-- /ko -->
-							/
-							<!-- ko : getPaymentEntry('expire_year') -->
-							<!-- /ko -->
+							<span data-bind="text: getPaymentEntry('expire_month')"></span>/
+							<span data-bind="text: getPaymentEntry('expire_year')"></span>
 						</div>
 					</div>
 
 					<div>
-						<label>
-							<!-- ko i18n: 'Card Verification Number'-->
-							<!-- /ko -->
+						<label> <!-- ko i18n: 'Card Verification Number'--> <!-- /ko -->
 						</label>
 						<div class="input-box">
-							<!-- ko : getPaymentEntry('cvc') -->
-							<!-- /ko -->
+							<span data-bind="text: getPaymentEntry('cvc')"></span>
 						</div>
 					</div>
 
@@ -76,7 +62,7 @@
 						<div class="input-box">
 							<button type="button"
 								data-bind="
-                    click: paymillFrame(),
+                    click: paymillFrame,
                     attr: {title: $t('paymill_change')}">
 								<span data-bind="i18n: 'paymill_change'"></span>
 							</button>
@@ -106,8 +92,7 @@
 						class="paymill-payment-currency-cc" type="hidden"
 						data-bind="value: getCurrency()" /> <input
 						class="paymill-payment-customer-email-cc" type="hidden"
-						data-bind="value: getCustomerEmail()" /> <span>
-						<!-- ko i18n: 'paymill_lang'-->
+						data-bind="value: getCustomerEmail()" /> <span> <!-- ko i18n: 'paymill_lang'-->
 						<!-- /ko -->
 					</span>
 				</div>

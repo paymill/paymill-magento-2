@@ -50,8 +50,7 @@ define(
 							return this._super();
 						},
 						paymillFrame : function() {
-							window.paymillCreditcard.methodInstance
-									.openPaymillFrame('de');
+                            paymillCreditcard.openFrame('de');
 						},
 
 						getPublicKey : function() {
