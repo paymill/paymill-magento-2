@@ -41,7 +41,7 @@ class MassDelete extends \Magento\Backend\App\Action
                 
                 $this->messageManager->addSuccess(
                         __("paymill_hook_action_success"));
-            } catch (Exception $e) {
+            } catch (\Paymill\Paymill\Services\Exception $e) {
                 $this->messageManager->addError($e->getMessage());
             }
         }
