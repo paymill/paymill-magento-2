@@ -151,8 +151,8 @@ class RefundHelper extends \Magento\Framework\App\Helper\AbstractHelper
     public function creditmemo (\Magento\Sales\Model\Order $order, $refundId)
     {
         if ($order->canCreditmemo()) {
-            
-            $service = Mage::getModel('sales/service_order', $order);
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $service = $objectManager->get('sales/service_order', $order);
             $creditmemo = $service->prepareCreditmemo();
             
             $creditmemo->setOfflineRequested(true);

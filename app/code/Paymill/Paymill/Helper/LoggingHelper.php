@@ -69,8 +69,9 @@ class LoggingHelper extends \Magento\Framework\App\Helper\AbstractHelper impleme
      * @return Collection Description
      */
     public function getEntries ()
-    {
-        $collection = Mage::getModel('paymill/log');
+    { 
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $collection = $objectManager->get('paymill/log');
         return $collection;
     }
     

@@ -248,7 +248,8 @@ define(
 					}
 
 					return {
-						amount_int : parseInt(this.getTokenAmount()),
+						amount_int : parseInt(this.helper
+									.getElementValue('paymill-payment-total-log-cc')),
 						currency : this.helper
 								.getElementValue('.paymill-payment-currency-cc'),
 						number : this.helper
@@ -265,48 +266,13 @@ define(
 					};
 				},
 
-				getTokenAmount : function() {
-					var that = this;
-					var returnVal = null;
-
-					new Ajax.Request(
-							this.helper
-									.getElementValue('.paymill-payment-token-url-cc'),
-							{
-								asynchronous : false,
-								parameters : {
-									form_key : $.cookie('form_key')
-								},
-								onSuccess : function(response) {
-									returnVal = response.transport.responseText;
-								},
-								onFailure : function() {
-									Object
-											.extend(
-													Validation.methods,
-													{
-														'paymill-validate-cc-token' : new Validator(
-																'paymill-validate-cc-token',
-																that.helper
-																		.getElementValue('.paymill-payment-error-cc-token')
-																		+ " Amount not accessable.",
-																function(value) {
-																	return value !== '';
-																}, '')
-													});
-								}
-
-							});
-
-					return returnVal;
-				},
-
 				getFrameTokenParameter : function() {
 					PAYMILL_PUBLIC_KEY = this.helper
 							.getElementValue('.paymill-info-public_key-cc');
 
 					return {
-						amount_int : parseInt(this.getTokenAmount()),
+						amount_int : parseInt(this.helper
+									.getElementValue('paymill-payment-total-log-cc')),
 						currency : this.helper
 								.getElementValue('.paymill-payment-currency-cc'),
 						email : this.helper
