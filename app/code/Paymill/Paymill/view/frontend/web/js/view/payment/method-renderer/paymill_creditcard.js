@@ -121,10 +121,16 @@ define(
 									.getCode()];
 						},
 
+					    getPaymentTotal : function() {
+							return window.checkoutConfig.payment.getPaymentTotal[this
+									.getCode()];
+						},
+
 						getTokenLog : function() {
 							return window.checkoutConfig.payment.getTokenLog[this
 									.getCode()];
 						},
+						
 						getCvvImageUrl : function() {
 							return window.checkoutConfig.payment.getCvvImageUrl[this
 									.getCode()];

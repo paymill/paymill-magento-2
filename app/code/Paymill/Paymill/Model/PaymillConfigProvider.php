@@ -14,6 +14,8 @@ use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Asset\Repository;
 use Paymill\Paymill\Helper\OptionHelper;
 use Magento\Framework\App\RequestInterface;
+use Paymill\Paymill\Helper\PaymentHelper as PaymentHelperTotal; 
+
 
 class PaymillConfigProvider implements ConfigProviderInterface
 {
@@ -38,6 +40,12 @@ class PaymillConfigProvider implements ConfigProviderInterface
      * @var RequestInterface
      */
     protected $request;
+
+    /**
+     *
+     * @var \Paymill\Paymill\Helper\PaymentHelper
+     */
+    protected $paymillPaymentHelperHelper;
 
     /**
      *
@@ -92,6 +100,7 @@ class PaymillConfigProvider implements ConfigProviderInterface
     public function __construct (PaymentHelper $paymentHelper, Escaper $escaper, 
             PaymentConfig $paymentConfig, UrlInterface $urlBuilder, 
             Repository $assetRepo, OptionHelper $paymillOptionHelperHelper, 
+            PaymentHelperTotal $paymillPaymentHelperHelper,
             RequestInterface $request)
     {
         $this->escaper = $escaper;
@@ -99,6 +108,7 @@ class PaymillConfigProvider implements ConfigProviderInterface
         $this->urlBuilder = $urlBuilder;
         $this->assetRepo = $assetRepo;
         $this->paymillOptionHelperHelper = $paymillOptionHelperHelper;
+        $this->paymillPaymentHelperHelper = $paymillPaymentHelperHelper;
         $this->request = $request;
         foreach ($this->methodCodes as $code) {
             $this->methods[$code] = $paymentHelper->getMethodInstance($code);
@@ -151,6 +161,7 @@ class PaymillConfigProvider implements ConfigProviderInterface
                     $config['payment']['getPaymillCcYears'][$code] = $this->getPaymillCcYears(
                             $code);
                     $config['payment']['getTokenUrl'][$code] = $this->getTokenUrl();
+                    $config['payment']['getPaymentTotal'][$code] = $this->getPaymentTotal();
                     $config['payment']['getCurrency'][$code] = $this->getCurrency(
                             $code);
                     $config['payment']['getCustomerEmail'][$code] = $this->getCustomerEmail(
@@ -221,6 +232,11 @@ class PaymillConfigProvider implements ConfigProviderInterface
     private function getCustomerEmail ($method)
     {
         return $this->methods[$method]->getCustomerEmail();
+    }
+
+    private function getPaymentTotal()
+    {
+        return  $this->paymillPaymentHelperHelper->getAmount();
     }
 
     /**
@@ -317,7 +333,7 @@ class PaymillConfigProvider implements ConfigProviderInterface
         try {
             $params = array_merge(['_secure' => $this->request->isSecure()], $params);
             return $this->assetRepo->getUrlWithParams($fileId, $params);
-        } catch (LocalizedException $e) {
+        } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->logger->critical($e);
             return $this->urlBuilder->getUrl('', ['_direct' => 'core/index/notFound']);
         }

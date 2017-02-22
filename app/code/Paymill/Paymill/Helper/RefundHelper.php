@@ -115,7 +115,7 @@ class RefundHelper extends \Magento\Framework\App\Helper\AbstractHelper
             $refundsObject = new \Paymill\Paymill\Services\Refunds(
                     $this->paymillOptionHelperHelper->getPrivateKey(), 
                     $this->paymillHelper->getApiUrl());
-        } catch (Exception $ex) {
+        } catch (\Paymill\Paymill\Services\Exception $ex) {
             $this->paymillLoggingHelperHelper->log(
                     "No Refund created due to illegal parameters.", 
                     $ex->getMessage());
@@ -138,7 +138,7 @@ class RefundHelper extends \Magento\Framework\App\Helper\AbstractHelper
         
         try {
             $refund = $refundsObject->create($params);
-        } catch (Exception $ex) {
+        } catch (\Paymill\Paymill\Services\Exception $ex) {
             $this->paymillLoggingHelperHelper->log("No Refund created.", 
                     $ex->getMessage(), var_export($params, true));
             return false;
@@ -151,8 +151,8 @@ class RefundHelper extends \Magento\Framework\App\Helper\AbstractHelper
     public function creditmemo (\Magento\Sales\Model\Order $order, $refundId)
     {
         if ($order->canCreditmemo()) {
-            
-            $service = Mage::getModel('sales/service_order', $order);
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $service = $objectManager->get('sales/service_order', $order);
             $creditmemo = $service->prepareCreditmemo();
             
             $creditmemo->setOfflineRequested(true);
