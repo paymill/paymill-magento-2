@@ -249,7 +249,7 @@ define(
 
 					return {
 						amount_int : parseInt(this.helper
-									.getElementValue('paymill-payment-total-log-cc')),
+									.getElementValue('.paymill-payment-total-cc')),
 						currency : this.helper
 								.getElementValue('.paymill-payment-currency-cc'),
 						number : this.helper
@@ -272,7 +272,7 @@ define(
 
 					return {
 						amount_int : parseInt(this.helper
-									.getElementValue('paymill-payment-total-log-cc')),
+									.getElementValue('.paymill-payment-total-cc')),
 						currency : this.helper
 								.getElementValue('.paymill-payment-currency-cc'),
 						email : this.helper
