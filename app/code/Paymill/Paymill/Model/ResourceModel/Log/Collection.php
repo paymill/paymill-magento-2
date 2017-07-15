@@ -23,7 +23,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 {
 
     public function __construct (
-            \Magento\Framework\Data\Collection\EntityFactoryInterface $entityFactory, 
+            \Magento\Framework\Data\Collection\EntityFactor $entityFactory, 
             \Psr\Log\LoggerInterface $logger, 
             \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy, 
             \Magento\Framework\Event\ManagerInterface $eventManager, 
